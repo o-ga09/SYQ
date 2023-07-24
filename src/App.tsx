@@ -1,12 +1,12 @@
-import { Box, Button, Grid, GridItem, Heading } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, GridItem } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
-import { firstList, secondList } from './lib/const';
+import { firstList } from './lib/const';
 
 
 function App() {
+  const title = '山本彩の曲名当てクイズ';
 
   const [ nazo1, setNazo1 ] = useState('');
-  const [ nazo2, setNazo2 ] = useState('');
   const [ isSpinning, setIsSpinning ] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -15,15 +15,13 @@ function App() {
     if (!isSpinning) {
       setIsSpinning(true);
 
-      const max = 99;
+      const max = firstList.length;
       const min = 0;
 
       // 一定間隔でルーレットを回転させる
       intervalRef.current = setInterval(() => {
         const index1 = Math.floor(Math.random() * (max - min + 1)) + min;
-        const index2 = Math.floor(Math.random() * (max - min + 1)) + min
         setNazo1(firstList[index1]);
-        setNazo2(secondList[index2]);
       }, 100);
     } else {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -33,29 +31,61 @@ function App() {
   });
 
   return (
-    <Box
-      h='100vh'
-      w='100%'
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Heading>⭐️なぞなぞジェネレータ⭐️</Heading>
-      <Box
-        w='700px'
-        h='500px'
-      >
-        <Grid templateColumns='repeat(2, 1fr)' gap={10}>
-          <GridItem w='300px' h='500px' bg='pink.200' fontSize='100px' textAlign='center'>{nazo1}</GridItem>
-          <GridItem w='300px' h='500px' bg='cyan.200' fontSize='100px' textAlign='center'>{nazo2}</GridItem>
-        </Grid>
-      </Box>
+    <>
+      <Flex direction="column" minH="100vh">
+        <Box 
+          h='150px' 
+          bg="teal.200" 
+          color="black" 
+          fontWeight='bold' 
+          fontSize='60px'
+          textAlign='center'
+        >
+          {title}
+        </Box>
+        <Box flex="1">
+          <Box 
+            p={4}
+          >
+            <Box 
+              w='500px' 
+              h='300px' 
+              bg='pink.200' 
+              fontSize='100px' 
+              textAlign='center' 
+              borderRadius='3xl' 
+              marginX='auto'
+            >
+              {nazo1}
+            </Box>
+          </Box>
 
-      <Box>
-      <Button bg='orange.200' onClick={() => start()} disabled={isSpinning}>謎ジェネスタート</Button>
-      </Box>
-    </Box>
+          <Grid w='50%' templateColumns='repeat(3, 1fr)' gap={5} marginTop='80px' marginX='auto'>
+            <GridItem w='100%' h='50px' bg='yellow.200' fontSize='10px' textAlign='center' borderRadius='full'>選択肢１</GridItem>
+            <GridItem w='100%' h='50px' bg='yellow.200' fontSize='10px' textAlign='center' borderRadius='full'>選択肢２</GridItem>
+            <GridItem w='100%' h='50px' bg='yellow.200' fontSize='10px' textAlign='center' borderRadius='full'>選択肢３</GridItem>
+          </Grid>
+
+          <Box
+            display='flex'
+            marginTop='90px'
+            justifyContent='center'
+          >
+              <Button 
+                bg='teal.200' 
+                onClick={() => start()} 
+                disabled={isSpinning}
+                borderRadius='3xl'
+              >    
+                曲名ルーレットスタート</Button>
+          </Box>
+        </Box>
+
+        <Box bg="teal.200" p={4} color="black" mt="auto">
+          copyright 2023 o-ga09
+        </Box>
+    </Flex>
+    </>
   )
 }
 
