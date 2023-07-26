@@ -2,6 +2,7 @@ import { Text,Box, Button, Flex, Grid, GridItem, Modal, ModalBody, ModalCloseBut
 import { useRef, useState } from 'react';
 import { answerList, questionList } from './lib/const';
 import { getUniqueRandomNumbers } from './lib/util';
+import { Helmet } from 'react-helmet';
 
 
 function App() {
@@ -10,10 +11,10 @@ function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
 
-  const [ nazo1, setNazo1 ] = useState('');
-  const [ choice1, setChoice1 ] = useState('');
-  const [ choice2, setChoice2 ] = useState('');
-  const [ choice3, setChoice3 ] = useState('');
+  const [ nazo1, setNazo1 ] = useState(questionList[0]);
+  const [ choice1, setChoice1 ] = useState(answerList[0]);
+  const [ choice2, setChoice2 ] = useState(answerList[1]);
+  const [ choice3, setChoice3 ] = useState(answerList[2]);
   const [ result, setResult ] = useState('');
   const [ isSpinning, setIsSpinning ] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -92,6 +93,20 @@ function App() {
 
   return (
     <>
+      <Helmet
+        title="山本彩曲名当てクイズ"
+        meta={[
+          {name: 'twitter:card', content: '山本彩曲名当てクイズ!!!'},
+          {name: 'twitter:title', content: '山本彩曲名当てクイズ'},
+          {name: 'twitter:description', content: '山本彩の曲名を当てるクイズアプリ'},
+          {name: 'twitter:image', content: '/public/ogpimage.png'},
+          {property: 'og:title', content: '山本彩曲名当てクイズ' },
+          {property: 'og:description', content: '山本彩の曲名を当てるクイズアプリ'},
+          {property: 'og:image', content: '/public/ogpimage.png'},
+          {property: 'og:url', content: 'https://sy-quiz.t09-blog.com/'},
+          {property: 'og:type', content: 'website'}
+        ]}
+      />
       <Flex direction="column" minH="100vh">
       <Box
         display='flex'
