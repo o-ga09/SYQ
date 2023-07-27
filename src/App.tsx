@@ -2,7 +2,6 @@ import { Text,Box, Button, Flex, Grid, GridItem, Modal, ModalBody, ModalCloseBut
 import { useRef, useState } from 'react';
 import { answerList, questionList } from './lib/const';
 import { getUniqueRandomNumbers } from './lib/util';
-import { Helmet } from 'react-helmet';
 
 
 function App() {
@@ -20,11 +19,10 @@ function App() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const start = (() => {
-    
     if (!isSpinning) {
       setIsSpinning(true);
 
-      const max = questionList.length;
+      const max = questionList.length - 1;
       const min = 0;
 
       // 一定間隔でルーレットを回転させる
@@ -93,20 +91,6 @@ function App() {
 
   return (
     <>
-      <Helmet
-        title="山本彩曲名当てクイズ"
-        meta={[
-          {name: 'twitter:card', content: '山本彩曲名当てクイズ!!!'},
-          {name: 'twitter:title', content: '山本彩曲名当てクイズ'},
-          {name: 'twitter:description', content: '山本彩の曲名を当てるクイズアプリ'},
-          {name: 'twitter:image', content: '/public/ogpimage.png'},
-          {property: 'og:title', content: '山本彩曲名当てクイズ' },
-          {property: 'og:description', content: '山本彩の曲名を当てるクイズアプリ'},
-          {property: 'og:image', content: '/public/ogpimage.png'},
-          {property: 'og:url', content: 'https://sy-quiz.t09-blog.com/'},
-          {property: 'og:type', content: 'website'}
-        ]}
-      />
       <Flex direction="column" minH="100vh">
       <Box
         display='flex'
