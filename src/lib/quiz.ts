@@ -7,12 +7,11 @@ export const useStart = (() => {
   const [ choice1, setChoice1 ] = useState<string>(answerList[0]);
   const [ choice2, setChoice2 ] = useState<string>(answerList[1]);
   const [ choice3, setChoice3 ] = useState<string>(answerList[2]);
-  const [ isSpinning, setIsSpinning ] = useState<boolean>(false);
+  const [ , setIsSpinning ] = useState<boolean>(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const start = () => {
-    
-      if (!isSpinning) {
+  const start = (isSpinning:boolean) => {
+    if (!isSpinning) {
         setIsSpinning(true);
   
         const max = questionList.length - 1;
@@ -58,7 +57,7 @@ export const useAnswer = (() => {
           return '🎉🎉🎉！！！正解！！！🎉🎉🎉';
 
         }else {
-          start();
+          start(true);
           return '😭😭😭　残念　😭😭😭';
         }
 
@@ -66,7 +65,7 @@ export const useAnswer = (() => {
         if(choice2 === answerList[questionList.indexOf(nazo1)]){
           return '🎉🎉🎉！！！正解！！！🎉🎉🎉';
         }else {
-          start();
+          start(true);
           return '😭😭😭　残念　😭😭😭';
         }
 
@@ -74,7 +73,7 @@ export const useAnswer = (() => {
         if(choice3 === answerList[questionList.indexOf(nazo1)]){
           return'🎉🎉🎉！！！正解！！！🎉🎉🎉';
         }else {
-          start();
+          start(true);
           return '😭😭😭　残念　😭😭😭';
         }
     }

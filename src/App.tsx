@@ -1,7 +1,12 @@
-import { Box, Flex, Grid, GridItem, useDisclosure, useMediaQuery } from '@chakra-ui/react';
+import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 import { useAnswer, useStart } from './lib/quiz';
 import { AnswerModal } from './components/Modal';
 import { useState } from 'react';
+import Header from './components/Header';
+import { Footer } from './components/Footer';
+import { Quiz } from './components/Quiz';
+import { SelectAnswer } from './components/SelectAnswer';
+import { QuizButton } from './components/Button';
 
 
 function App() {
@@ -11,6 +16,9 @@ function App() {
   const { answer } = useAnswer();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [ result, setResult ] = useState('');
+  const [ isSpinning, setSpinning ] = useState(false);
+
+
 
   const handleAnswer = (no:number) => {
     const res = answer(no,nazo1,choice1,choice2,choice3);
@@ -22,72 +30,13 @@ function App() {
     <>
       <Flex direction="column" minH="100vh">
       {/* ヘッダー */}
+      <Header />
       <Box p='16px' paddingTop={isSmallerThan600 ? '40px' : '80px'}>
-        <Box
-          display='flex'
-          w={isSmallerThan600 ? '100%' : '700px'}
-          h={isSmallerThan600 ? '200px' : '300px'}
-          bg='yellow.200'
-          fontSize={isSmallerThan600 ? '20px' : '40px'}
-          fontWeight='bold'
-          textAlign='center'
-          borderRadius='3xl'
-          alignItems='center'
-          justifyContent='center'
-          marginX='auto'
-        >
-          {nazo1}
-        </Box>
+      {/* 問題 */}
+        <Quiz quiz={nazo1} />
       </Box>
-
-      <Grid
-        w='70%'
-        templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
-        gap={5}
-        marginTop='20px'
-        marginX='auto'
-        p={4}
-      >
-        <GridItem
-          w='100%'
-          h='50px'
-          bg='yellow.200'
-          fontSize='20px'
-          fontWeight='bold'
-          textAlign='center'
-          borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
-          onClick={() => handleAnswer(1)}
-        >
-          {choice1}
-        </GridItem>
-        <GridItem
-          w='100%'
-          h='50px'
-          bg='yellow.200'
-          fontSize='20px'
-          fontWeight='bold'
-          textAlign='center'
-          borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
-          onClick={() => handleAnswer(2)}
-        >
-          {choice2}
-        </GridItem>
-        <GridItem
-          w='100%'
-          h='50px'
-          bg='yellow.200'
-          fontSize='20px'
-          fontWeight='bold'
-          textAlign='center'
-          borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
-          onClick={() => handleAnswer(3)}
-        >
-          {choice3}
-        </GridItem>
-      </Grid>
+      {/* 選択肢 */}
+      <SelectAnswer answer1={choice1} answer2={choice2} answer3={choice3} onClick={handleAnswer} />
 
       <Box 
         display='flex' 
@@ -95,10 +44,12 @@ function App() {
         justifyContent='center'
         p={4}
       >
-        {/* スタートボタン */}
+        {/* スタートボタン*/}
+        {/* <QuizButton isSpinning={}/>  */}
       </Box>
 
       {/* フッター */}
+      <Footer />
 
       {/* モーダル */}
       <AnswerModal isOpen={isOpen} onClose={onClose} result={result} />
