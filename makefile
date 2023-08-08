@@ -3,4 +3,4 @@ test:
 run:
 	npm run dev
 build:
-	vite build
+	npm run build
