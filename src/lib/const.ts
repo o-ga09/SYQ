@@ -27,3 +27,7 @@ export const questionList = [
     'いつもなら煩いくらいのステージに埃が舞う　時間も自分も進まないまま',
     'Hey, you can hear me? Let\'s count uo to joy One, so close your eyes',
 ]
+
+
+export const max = questionList.length - 1;
+export const min = 0;
