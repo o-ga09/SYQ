@@ -9,10 +9,10 @@ export const Footer = () => {
         <Text>
           &copy; copyright 2023 o-ga09
         </Text>
-        <Link href='https://chakra-ui.com' isExternal marginLeft={16}>
+        <Link href='https://forms.gle/K2XZcDssKRhsYQCR8' isExternal marginLeft={16}>
           お問い合わせ／ご要望はこちら <ExternalLinkIcon mx='2px' />
         </Link>
-        <Link href='https://chakra-ui.com' isExternal marginLeft={16}>
+        <Link href='/policy' isExternal marginLeft={16}>
           サイトポリシー <ExternalLinkIcon mx='2px' />
         </Link>
       </Flex>
