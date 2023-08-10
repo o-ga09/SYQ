@@ -16,6 +16,7 @@ export const QuizButton= (props: Props) => {
     disabled={isSpinning}
     borderRadius='3xl'
     _hover={{ bg: 'pink.400', cursor: 'pointer' }}
+    boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
   >
     曲名ルーレットスタート
   </Button>

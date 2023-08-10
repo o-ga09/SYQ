@@ -4,7 +4,7 @@ import { Box,Text,Link, Flex } from '@chakra-ui/react'
 
 export const Footer = () => {
   return (
-    <Box bgGradient='linear(to-r, pink.500, yellow.200)' p={4} color="black" mt="auto">
+    <Box bgGradient='linear(to-r, yellow.100, pink.300)' p={4} color="black" mt="auto">
       <Flex direction='row'>
         <Text>
           &copy; copyright 2023 o-ga09

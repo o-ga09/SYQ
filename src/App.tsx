@@ -69,7 +69,7 @@ function App() {
 
   return (
     <>
-      <Flex direction="column" minH="100vh">
+      <Flex direction="column" minH="100vh" bgGradient='linear(to-r, yellow.100, pink.300)'>
       {/* ヘッダー */}
       <Header />
       <Box p='16px' paddingTop={isSmallerThan600 ? '40px' : '80px'}>

@@ -23,39 +23,42 @@ export const SelectAnswer = (props:Props) => {
         <GridItem
           w='100%'
           h='50px'
-          bg='yellow.200'
+          bg='yellow.100'
           fontSize='20px'
           fontWeight='bold'
           textAlign='center'
           borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
+          _hover={{ bg: 'yellow.300', cursor: 'pointer' }}
           onClick={() => handleAnswer(1)}
+          boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
         >
           {choice1}
         </GridItem>
         <GridItem
           w='100%'
           h='50px'
-          bg='yellow.200'
+          bg='yellow.100'
           fontSize='20px'
           fontWeight='bold'
           textAlign='center'
           borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
+          _hover={{ bg: 'yellow.300', cursor: 'pointer' }}
           onClick={() => handleAnswer(2)}
+          boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
         >
           {choice2}
         </GridItem>
         <GridItem
           w='100%'
           h='50px'
-          bg='yellow.200'
+          bg='yellow.100'
           fontSize='20px'
           fontWeight='bold'
           textAlign='center'
           borderRadius='full'
-          _hover={{ bg: 'yellow.400', cursor: 'pointer' }}
+          _hover={{ bg: 'yellow.300', cursor: 'pointer' }}
           onClick={() => handleAnswer(3)}
+          boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
         >
           {choice3}
         </GridItem>

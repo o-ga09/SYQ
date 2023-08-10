@@ -16,7 +16,7 @@ function Header() {
     fontSize={isSmallerThan600 ? '70px' : '100px'}
     alignItems='center'
     justifyContent='center'
-    bgGradient='linear(to-r, yellow.200, pink.500)'
+    bgGradient='linear(to-r, yellow.100, pink.300)'
   >
     {title}
   </Box>
