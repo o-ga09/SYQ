@@ -30,53 +30,26 @@ function Top() {
         </Box>
 
         <Flex 
-            direction='row'
+            direction={isSmallerThan600 ? 'column' : 'row'}
             display='flex'
             justifyContent='center'
-            paddingTop={32}
-        >
-            <Box
-                display='flex'
-                w='300px'
-                h='150px'
-                fontWeight='bold'
-                fontSize={isSmallerThan600 ? '10px' : '20px'}
-                alignItems='center'
-                justifyContent='center'
-            >
-                早押しモードはこちら！
-            </Box>
-            <Box
-                display='flex'
-                w='300px'
-                h='150px'
-                fontWeight='bold'
-                fontSize={isSmallerThan600 ? '10px' : '20px'}
-                alignItems='center'
-                justifyContent='center'
-            >
-                エンドレスモードはこちら！
-            </Box>
-        </Flex>
-
-        <Flex 
-            direction='row'
-            display='flex'
-            justifyContent='center'
+            pt={isSmallerThan600 ? 16 : 64}
         >
             <Box
                 display='flex'
                 w='300px' 
                 p={4}
                 justifyContent='center'
+                marginX={isSmallerThan600 ? 'auto' : ''}
             >
-                <GameStartButton title='早押しへ' uri='/quickanswer' />
+                <GameStartButton title='早押しモードへ！' uri='/quickanswer' />
             </Box>
             <Box 
-                display='300px'
+                display='flex'
                 w='300px'
                 p={4}
                 justifyContent='center'
+                marginX={isSmallerThan600 ? 'auto' : ''}
             >
                 <GameStartButton title='エンドレスモードへ！' uri='/endless' />
             </Box>
@@ -85,7 +58,7 @@ function Top() {
         <Box
             display='flex'
             justifyContent='center'
-            paddingTop={16}
+            paddingTop={isSmallerThan600 ? 8 : 32}
         >
             <HelpButton onClick={handleHelpButton} />
         </Box>

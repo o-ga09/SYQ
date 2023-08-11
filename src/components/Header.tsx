@@ -9,7 +9,7 @@ function Header() {
     <Box
     className='header'
     display='flex'
-    h='150px'
+    h={isSmallerThan600 ? '100px' : '150px'}
     bg="teal.200"
     color="black"
     fontWeight='bold'
