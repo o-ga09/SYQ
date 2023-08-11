@@ -2,25 +2,37 @@ import { Box, Button, Heading, ListItem, Modal,ModalBody,ModalCloseButton,ModalC
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 type Props = {
-    isOpen:boolean,
-    onClose: () => void,
-    result:string
+    isOpen:boolean;
+    onClose: () => void;
+    result:number;
 }
 export const AnswerModal = (props:Props) => {
     const isOpen = props.isOpen;
     const onClose = props.onClose;
     const result = props.result;
+    const shareUrl = 'https://sy-quiz.t09-blog.com/';
+    const title = '🎉🎉🎉SYQ 連続モード 回答結果🎉🎉🎉 \n\n正解数 ： ' + result + ' ／ 48 問中\n\n#山本彩\n#曲名当てクイズ\n#アンド\n#identity\n#rainbow\n#α\n';
   return (
     <>
     <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bgGradient='linear(to-r, yellow.200, pink.300)'>
-          <ModalHeader>結果</ModalHeader>
+          <ModalHeader>🎉🎉🎉 結果 🎉🎉🎉</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>
-              {result}
-            </Text>
+            <UnorderedList listStyleType='none' mt={4}>
+              <ListItem>あなたの正解数は {result}／48問中でした！</ListItem>
+            </UnorderedList>
+            <Box
+              display='flex'
+              justifyContent='center'
+              p={4}
+            >
+              <Text p={2} fontWeight='bold'>シェアする</Text>
+              <TwitterShareButton url={shareUrl} title={title}>
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+            </Box>
           </ModalBody>
 
           <ModalFooter>
@@ -89,7 +101,7 @@ export const QuickModeModal = (props:QuickModeProps) => {
   const totalNum = props.totalNum;
 
   const shareUrl = 'https://sy-quiz.t09-blog.com/';
-  const title = '🎉🎉🎉SYQ 回答結果🎉🎉🎉 \n\n正解数 ： ' + correctNum + ' [問]]\n回答秒数 ： ' + totalNum + ' [秒]\n\n#山本彩\n#曲名当てクイズ\n#アンド\n#identity\n#rainbow\n#α\n';
+  const title = '🎉🎉🎉SYQ 早押しモード 回答結果🎉🎉🎉 \n\n正解数 ： ' + correctNum + ' [問]]\n回答秒数 ： ' + totalNum + ' [秒]\n\n#山本彩\n#曲名当てクイズ\n#アンド\n#identity\n#rainbow\n#α\n';
   return (
   <>
   <Modal isOpen={isOpen} onClose={onClose}>
