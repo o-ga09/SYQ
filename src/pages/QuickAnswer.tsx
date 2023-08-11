@@ -1,4 +1,4 @@
-import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Text, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {  useCallback, useEffect, useState } from 'react'
 import { answerList, max, questionList } from '../lib/const';
@@ -7,9 +7,12 @@ import { SelectAnswer } from '../components/SelectAnswer';
 import { useAnswer } from '../lib/quiz';
 import { useTimer } from 'react-timer-hook';
 import { QuizButton } from '../components/Button';
-import { AnswerModal } from '../components/Modal';
+import { QuickModeModal } from '../components/Modal';
+import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 function QuickAnswer() {
+  const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
   // 回答判定カスタムフック
   const { answer } = useAnswer();
   // タイマーフック
@@ -85,6 +88,11 @@ function QuickAnswer() {
     TimerRestart();
   };
 
+  const handleOnClose = () => {
+      setCorrectAnswer(0);
+      setTotaltime(0);
+      onClose();
+  };
   useEffect(() => {
     if (seconds === 0) {
       setTotaltime((prevTime) => {return prevTime + 5});
@@ -93,20 +101,29 @@ function QuickAnswer() {
     }
     if(QuizNum === 10) {
       pause();
+      onOpen();
       setQuizNum(0);
-      setCorrectAnswer(0);
-      setTotaltime(0);
       setNazo1('スタートボタンを押してね！');
       setChoice1('');
       setChoice2('');
       setChoice3('');
-      onOpen();
     }
   }, [QuizNum, TimerRestart, onOpen, pause, seconds]);
 
   return (
       <Flex direction='column' minH='100vh' bgGradient='linear(to-r, yellow.100, pink.300)'>
-        <Box textAlign="center" pt={20}>
+        <Box
+          w={isSmallerThan600 ? '100%' : '70%'}
+          display='flex'
+          justifyContent='flex-start'
+          marginX='auto'
+          onClick={() => {window.location.href = '/'}}
+          p={2}
+        >
+          <IoArrowBackCircleOutline size={isSmallerThan600 ? 32 : 64} color='green' />
+        </Box>
+        
+        <Box h='150px' textAlign="center" p={5}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -120,15 +137,42 @@ function QuickAnswer() {
         </Box>
 
         <SelectAnswer answer1={choice1} answer2={choice2} answer3={choice3} onClick={handleAnswer} />
+        
+        {nazo1 === 'スタートボタンを押してね！' ? (
+            <Box
+              display='flex'
+              w='100%'
+              justifyContent='center'
+              p={isSmallerThan600 ? 8 : 16}
+            />
+          ):
+          (
+            <Box
+              display='flex'
+              w='100%'
+              justifyContent='center'
+              p={isSmallerThan600 ? 8 : 16}
+            >
+              {isCorrect ? (
+                <FaCheckCircle size={50} color='green' />
+              ):
+              (
+                <FaTimesCircle size={50} color='red' />
+              )}
+            </Box>
+          )
+        }
 
-        <Text>{isCorrect ? '正解' : '不正解'}</Text>
-        <Text>正解数：{QuizNum}</Text>
-        <Text>回答秒数：{totaltime}</Text>
-        <Text>正答数：{correctAnswer}</Text>
 
-        <QuizButton title='早押しスタート' start={TimerStart} />
+        <Box
+          display='flex'
+          w='100%'
+          justifyContent='center'
+        >
+          <QuizButton title='早押しスタート' start={TimerStart} />
+        </Box>
 
-        <AnswerModal isOpen={isOpen} onClose={onClose} result='' />
+        <QuickModeModal isOpen={isOpen} onClose={handleOnClose} correctNum={correctAnswer} totalNum={totaltime} />
       </Flex>
   );
 }
