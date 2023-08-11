@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Policy from './pages/Policy.tsx';
 import Top from './pages/Top.tsx';
 import QuickAnswer from './pages/QuickAnswer.tsx';
+import Release from './pages/Release.tsx';
 
 // Google Analytics 測定 ID を入力して設定
 ReactGA.initialize("G-FRQ21922ZE");
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/quickanswer",
     element: <QuickAnswer />,
+  },
+  {
+    path: "/release",
+    element: <Release />,
   },
   {
     path: "/policy",

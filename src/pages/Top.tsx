@@ -1,6 +1,6 @@
 import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import '../style.css';
-import { GameStartButton, HelpButton } from '../components/Button';
+import { GameStartButton, HelpButton, ReleaseButton } from '../components/Button';
 import { Footer } from '../components/Footer';
 import { HelpModal } from '../components/Modal';
 
@@ -16,6 +16,16 @@ function Top() {
   return (
     <Flex direction='column' minH='100vh' bgGradient='linear(to-r, yellow.100, pink.300)'>
         <Box
+            w={isSmallerThan600 ? '100%' : '80%'}
+            display='flex'
+            justifyContent='flex-end'
+            alignItems='center'
+            p={4}
+        >
+            <ReleaseButton title='お知らせ' uri='/release' />
+        </Box>
+
+        <Box
             className='header'
             display='flex'
             h='150px'
@@ -24,7 +34,6 @@ function Top() {
             fontSize={isSmallerThan600 ? '70px' : '100px'}
             alignItems='center'
             justifyContent='center'
-            bgGradient='linear(to-r, yellow.100, pink.300)'
         >
             {title}
         </Box>
@@ -63,7 +72,7 @@ function Top() {
             <HelpButton onClick={handleHelpButton} />
         </Box>
 
-        <HelpModal isOpen={isOpen} onClose={onClose} result='' />
+        <HelpModal isOpen={isOpen} onClose={onClose} result={0} />
 
         <Footer />
     </Flex>
