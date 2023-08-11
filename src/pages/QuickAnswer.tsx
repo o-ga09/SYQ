@@ -33,9 +33,9 @@ function QuickAnswer() {
   
   // 問題と選択肢の状態変数
   const [ nazo1, setNazo1 ] = useState<string>('スタートボタンを押してね！');
-  const [ choice1, setChoice1 ] = useState<string>('---');
-  const [ choice2, setChoice2 ] = useState<string>('---');
-  const [ choice3, setChoice3 ] = useState<string>('---');
+  const [ choice1, setChoice1 ] = useState<string>('S');
+  const [ choice2, setChoice2 ] = useState<string>('Y');
+  const [ choice3, setChoice3 ] = useState<string>('C');
 
   // 問題と設定する
   const setQuestion = useCallback(() => {
@@ -129,8 +129,8 @@ function QuickAnswer() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Text fontSize="xl">次の問題まで: {seconds}秒</Text>
-            <Text mt={4} fontSize="xl" fontWeight="bold">
+            <Text fontSize={isSmallerThan600 ? '25px' : '30px'}fontWeight='bold'>次の問題まで: {seconds}秒</Text>
+            <Text mt={4} fontSize={isSmallerThan600 ? '25px' : '30px'} fontWeight="bold">
               {nazo1}
             </Text>
           </motion.div>
