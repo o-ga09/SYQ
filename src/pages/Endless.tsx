@@ -81,7 +81,7 @@ function Endless() {
       setIsCorrect(false);
       onOpen();
     }
-    if(correctAnswer === 4) {
+    if(correctAnswer === max) {
       onOpen();
     } 
   };
