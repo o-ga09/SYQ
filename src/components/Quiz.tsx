@@ -10,8 +10,8 @@ export const Quiz = (props:Props) => {
     <Box
     display='flex'
     w={isSmallerThan600 ? '100%' : '700px'}
-    h={isSmallerThan600 ? '200px' : '300px'}
-    bg='yellow.200'
+    h={isSmallerThan600 ? '150px' : '300px'}
+    bg='yellow.100'
     fontSize={isSmallerThan600 ? '20px' : '40px'}
     fontWeight='bold'
     textAlign='center'
@@ -19,6 +19,7 @@ export const Quiz = (props:Props) => {
     alignItems='center'
     justifyContent='center'
     marginX='auto'
+    boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
   >
     {nazo}
   </Box>
