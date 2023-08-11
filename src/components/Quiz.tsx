@@ -10,7 +10,7 @@ export const Quiz = (props:Props) => {
     <Box
     display='flex'
     w={isSmallerThan600 ? '100%' : '700px'}
-    h={isSmallerThan600 ? '200px' : '300px'}
+    h={isSmallerThan600 ? '150px' : '300px'}
     bg='yellow.100'
     fontSize={isSmallerThan600 ? '20px' : '40px'}
     fontWeight='bold'

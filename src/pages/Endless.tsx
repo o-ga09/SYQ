@@ -8,6 +8,7 @@ import { SelectAnswer } from '../components/SelectAnswer';
 import { QuizButton } from '../components/Button';
 import { answerList, max, min, questionList } from '../lib/const';
 import { getUniqueRandomNumbers } from '../lib/util';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 type Spin = {
   isSpinning: boolean;
 }
@@ -69,9 +70,20 @@ function Endless() {
   return (
     <>
       <Flex direction="column" minH="100vh" bgGradient='linear(to-r, yellow.100, pink.300)'>
+      <Box
+        w={isSmallerThan600 ? '100%' : '70%'}
+        display='flex'
+        justifyContent='flex-start'
+        marginX='auto'
+        onClick={() => {window.location.href = '/'}}
+        p={2}
+      >
+        <IoArrowBackCircleOutline size={isSmallerThan600 ? 32 : 64} color='green' />
+      </Box>
+
       {/* ヘッダー */}
       <Header />
-      <Box p='16px' paddingTop={isSmallerThan600 ? '40px' : '80px'}>
+      <Box p={isSmallerThan600 ? 4 : 1} paddingTop={isSmallerThan600 ? '20px' : '80px'}>
       {/* 問題 */}
         <Quiz quiz={nazo1} />
       </Box>
@@ -80,9 +92,9 @@ function Endless() {
 
       <Box 
         display='flex' 
-        marginTop={isSmallerThan600 ? '20px' : '45px'} 
+        marginTop={isSmallerThan600 ? '10px' : '45px'} 
         justifyContent='center'
-        p={4}
+        p={1}
       >
         <SpinContext.Provider value={{isSpinning}}>
           {/* スタートボタン*/}
