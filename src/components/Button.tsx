@@ -4,9 +4,11 @@ import { useContext } from "react";
 import { FaQuestionCircle } from 'react-icons/fa';
 
 type Props = {
+  title:string;
   start: () => void;
 }
 export const QuizButton= (props: Props) => {
+  const title = props.title;
   const start = props.start;
   const { isSpinning } = useContext(SpinContext);
 
@@ -19,7 +21,7 @@ export const QuizButton= (props: Props) => {
     _hover={{ bg: 'pink.400', cursor: 'pointer' }}
     boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
   >
-    曲名ルーレットスタート
+    {title}
   </Button>
   )
 }

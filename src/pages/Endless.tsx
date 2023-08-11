@@ -86,7 +86,7 @@ function Endless() {
       >
         <SpinContext.Provider value={{isSpinning}}>
           {/* スタートボタン*/}
-          <QuizButton start={start}/> 
+          <QuizButton title='曲名ルーレットスタート' start={start}/> 
         </SpinContext.Provider>
       </Box>
 
