@@ -71,3 +71,24 @@ export const HelpButton = (props: HelpProps) => {
     </Button>
   )
 }
+
+type ReleaseProps = {
+  title: string;
+  uri:string;
+};
+export const ReleaseButton = (props: ReleaseProps) => {
+  const title = props.title;
+  const uri = props.uri;
+
+  return (
+    <Button
+    bgGradient='linear(to-r, yellow.200, pink.400)'
+    onClick={() => {window.location.href = uri}}
+    borderRadius='3xl'
+    _hover={{ bg: 'pink.400', cursor: 'pointer' }}
+    boxShadow='0px 5px 15px 0px rgba(98, 75, 64, 1)' 
+  >
+    {title}
+  </Button>
+  )
+}
