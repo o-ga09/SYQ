@@ -77,8 +77,6 @@ function Endless() {
   const handleAnswer = (no:number) => {
     const max = questionList.length - 1;
     const res = answer(no,nazo1,choice1,choice2,choice3);
-    console.log(quizArray.length);
-    console.log(answerArray.length);
     if(res.indexOf('正解') !== -1) {
       setCorrectAnswer((prevNum) => {return prevNum + 1});
       setIsCorrect(true);
@@ -91,11 +89,13 @@ function Endless() {
       onOpen();
     }
     // 同じ問題が出題されないように修正
-    const index = quizArray.indexOf(nazo1);
-    const filteredAnswerArray: string[] = answerArray.filter((item) => item !== answerArray[index]);
-    const filteredQuizArray: string[] = quizArray.filter((item) => item !== nazo1);
-    setQuizArray(filteredQuizArray);
-    setAnswerArray(filteredAnswerArray);
+    if(quizArray.length > 5) {
+      const index = quizArray.indexOf(nazo1);
+      const filteredAnswerArray: string[] = answerArray.filter((item) => item !== answerArray[index]);
+      const filteredQuizArray: string[] = quizArray.filter((item) => item !== nazo1);
+      setQuizArray(filteredQuizArray);
+      setAnswerArray(filteredAnswerArray);
+    }
   };
 
   const handleOnClose = () => {
