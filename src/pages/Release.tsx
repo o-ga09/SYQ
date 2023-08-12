@@ -37,6 +37,18 @@ function Release() {
             </Thead>
             <Tbody>
               <Tr>
+                <Td>8/12</Td>
+                <Td>機能追加：PWA対応</Td>
+              </Tr>
+              <Tr>
+                <Td>8/12</Td>
+                <Td>不具合修正：AndroidからTwitterシェアができない </Td>
+              </Tr>
+              <Tr>
+                <Td>8/12</Td>
+                <Td>不具合修正：連続正解モードで同じ問題が出題される</Td>
+              </Tr>
+              <Tr>
                 <Td>8/11</Td>
                 <Td>正式版リリース</Td>
               </Tr>
