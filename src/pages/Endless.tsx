@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import { Quiz } from '../components/Quiz';
 import { SelectAnswer } from '../components/SelectAnswer';
 import { QuizButton } from '../components/Button';
-import { answerList, max, min, questionList } from '../lib/const';
+import { answerList, min, questionList } from '../lib/const';
 import { getUniqueRandomNumbers } from '../lib/util';
 import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
@@ -33,6 +33,9 @@ function Endless() {
   const [ choice1, setChoice1 ] = useState<string>(answerList[0]);
   const [ choice2, setChoice2 ] = useState<string>(answerList[1]);
   const [ choice3, setChoice3 ] = useState<string>(answerList[2]);
+  // 同じ問題が出題されないように修正
+  const [ quizArray, setQuizArray ] = useState<string[]>(questionList);
+  const [ answerArray, setAnswerArray ] = useState<string[]>(answerList);
   
   // ルーレットの回転フラグと回転間隔
   const [ isSpinning, setSpinning ] = useState(false);
@@ -42,15 +45,16 @@ function Endless() {
     if (!isSpinning) {
       setSpinning(true);
 
+      const max = quizArray.length - 1;
       // 一定間隔でルーレットを回転させる
       intervalRef.current = setInterval(() => {
         const index1 = Math.floor(Math.random() * (max - min + 1)) + min;
-        setNazo1(questionList[index1]);
+        setNazo1(quizArray[index1]);
       }, 100);
     } else {
       // nazo1を除外した配列を作成
-      const index = questionList.indexOf(nazo1);
-      const filteredArray: string[] = answerList.filter((item) => item !== answerList[index]);
+      const index = quizArray.indexOf(nazo1);
+      const filteredArray: string[] = answerArray.filter((item) => item !== answerArray[index]);
 
       // ランダムに２つの要素を取得
       const getRandomElements = (arr: string[], count: number): string[] => {
@@ -59,7 +63,7 @@ function Endless() {
       };
 
       const result: string[] = getRandomElements(filteredArray, 2);
-      result.push(answerList[index]);
+      result.push(answerArray[index]);
       const randomNumbers = getUniqueRandomNumbers(3);
       setChoice1(result[randomNumbers[0]]);
       setChoice2(result[randomNumbers[1]]);
@@ -71,8 +75,10 @@ function Endless() {
   };
 
   const handleAnswer = (no:number) => {
+    const max = questionList.length - 1;
     const res = answer(no,nazo1,choice1,choice2,choice3);
-    
+    console.log(quizArray.length);
+    console.log(answerArray.length);
     if(res.indexOf('正解') !== -1) {
       setCorrectAnswer((prevNum) => {return prevNum + 1});
       setIsCorrect(true);
@@ -83,7 +89,13 @@ function Endless() {
     }
     if(correctAnswer === max) {
       onOpen();
-    } 
+    }
+    // 同じ問題が出題されないように修正
+    const index = quizArray.indexOf(nazo1);
+    const filteredAnswerArray: string[] = answerArray.filter((item) => item !== answerArray[index]);
+    const filteredQuizArray: string[] = quizArray.filter((item) => item !== nazo1);
+    setQuizArray(filteredQuizArray);
+    setAnswerArray(filteredAnswerArray);
   };
 
   const handleOnClose = () => {
