@@ -8,6 +8,8 @@ import Policy from './pages/Policy.tsx';
 import Top from './pages/Top.tsx';
 import QuickAnswer from './pages/QuickAnswer.tsx';
 import Release from './pages/Release.tsx';
+import { registerSW } from 'virtual:pwa-register';
+
 
 // Google Analytics 測定 ID を入力して設定
 ReactGA.initialize("G-FRQ21922ZE");
@@ -45,3 +47,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ChakraProvider>
   </React.StrictMode>,
 )
+registerSW();

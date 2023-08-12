@@ -1,5 +1,6 @@
 import { Box, Button, Heading, ListItem, Modal,ModalBody,ModalCloseButton,ModalContent,ModalFooter,ModalHeader,ModalOverlay,Text, UnorderedList } from '@chakra-ui/react'
-import { TwitterIcon, TwitterShareButton } from 'react-share';
+import { TwitterIcon } from 'react-share';
+import { TwitterShare } from './Share';
 
 type Props = {
     isOpen:boolean;
@@ -10,8 +11,9 @@ export const AnswerModal = (props:Props) => {
     const isOpen = props.isOpen;
     const onClose = props.onClose;
     const result = props.result;
-    const shareUrl = 'https://sy-quiz.t09-blog.com/';
-    const title = '🎉🎉🎉SYQ 連続モード 回答結果🎉🎉🎉 \n\n正解数 ： ' + result + ' ／ 48 問中\n\n#山本彩\n#曲名当てクイズ\n#アンド\n#identity\n#rainbow\n#α\n';
+    const shareUrl = '\nhttps://sy-quiz.t09-blog.com/\n';
+    const title = '🎉🎉🎉SYQ 連続モード 回答結果🎉🎉🎉 \n\n正解数 ： ' + result + ' ／ 48 問中\n\n';
+    const hashtag = ['山本彩\n','曲名当てクイズ\n','アンド\n','identity\n','rainbow\n','α\n'];
   return (
     <>
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -28,10 +30,9 @@ export const AnswerModal = (props:Props) => {
               justifyContent='center'
               p={4}
             >
-              <Text p={2} fontWeight='bold'>シェアする</Text>
-              <TwitterShareButton url={shareUrl} title={title}>
-                <TwitterIcon size={32} round />
-              </TwitterShareButton>
+              <TwitterShare text={title} url={shareUrl} hashtags={hashtag}>
+                <TwitterIcon round size={32} />
+              </TwitterShare>
             </Box>
           </ModalBody>
 
@@ -100,8 +101,9 @@ export const QuickModeModal = (props:QuickModeProps) => {
   const correctNum = props.correctNum;
   const totalNum = props.totalNum;
 
-  const shareUrl = 'https://sy-quiz.t09-blog.com/';
-  const title = '🎉🎉🎉SYQ 早押しモード 回答結果🎉🎉🎉 \n\n正解数 ： ' + correctNum + ' [問]]\n回答秒数 ： ' + totalNum + ' [秒]\n\n#山本彩\n#曲名当てクイズ\n#アンド\n#identity\n#rainbow\n#α\n';
+  const shareUrl = '\nhttps://sy-quiz.t09-blog.com/\n\n';
+  const title = '🎉🎉🎉SYQ 早押しモード 回答結果🎉🎉🎉 \n\n正解数 ： ' + correctNum + ' [問]]\n回答秒数 ： ' + totalNum + ' [秒]\n\n';
+  const hashtag = ['山本彩\n','曲名当てクイズ\n','アンド\n','identity\n','rainbow\n','α\n'];
   return (
   <>
   <Modal isOpen={isOpen} onClose={onClose}>
@@ -119,10 +121,9 @@ export const QuickModeModal = (props:QuickModeProps) => {
           justifyContent='center'
           p={4}
         >
-          <Text p={2} fontWeight='bold'>シェアする</Text>
-          <TwitterShareButton url={shareUrl} title={title}>
-            <TwitterIcon size={32} round />
-          </TwitterShareButton>
+          <TwitterShare text={title} url={shareUrl} hashtags={hashtag}>
+            <TwitterIcon round size={32} />
+          </TwitterShare>
         </Box>
         </ModalBody>
 
